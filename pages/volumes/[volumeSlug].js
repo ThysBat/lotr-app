@@ -1,7 +1,15 @@
-import Link from "next/link";
+import { volumes } from "@/lib/data";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Book({ volume }) {
+export default function Volume() {
+  const router = useRouter();
+  const { volumeSlug } = router.query;
+
+  const volume = volumes.find((volume) => volume.slug === volumeSlug);
+  if (!volume) return null;
+
   return (
     <>
       <Link href="/volumes">← All Volumes</Link>
